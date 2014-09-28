@@ -1,6 +1,6 @@
 package my.timer;
 
-public abstract class TimerTask {
+public abstract class TimerTask implements Runnable {
 	boolean cancelled = false;
 	long nextTime = -1;
 	long period;
@@ -31,8 +31,8 @@ public abstract class TimerTask {
 		
 		boolean reschedule(){
 			if(period == 0 || cancelled) return false;
-			if(fixedRate) nextTime+=period;
-			else nextTime = System.currentTimeMillis()+period;
+			if(fixedRate) nextTime += period;
+			else nextTime = System.currentTimeMillis() + period;
 			
 			return true;
 			
