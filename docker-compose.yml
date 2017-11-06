@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile.django
     command: "python ./manage.py runserver 0.0.0.0:8000"
     depends_on:
       - "db"
@@ -13,6 +13,34 @@ services:
       - ".:/data"
     environment:
       DATABASE_URL: "postgres://postgres@db/postgres"
+
+  ember:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.ember
+    command: ember server --live-reload-port 35730
+    entrypoint: /usr/src/app/docker/development-entrypoint
+
+    volumes:
+      # Mount the app code inside the container's `/usr/src/app` directory:
+      - .:/usr/src/app
+
+    # Keep the stdin open, so we can attach to our app container's process
+    # and do things such as debugging, etc:
+    stdin_open: true
+
+    # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container:
+    tty: true
+
+    ports:
+      # Bind the host's 4200 port to the container's ember app server
+      # port 4200:
+      - 4200:4200
+      # Bind the host's 35730 port to the container's ember cli live reload
+      # server port 35730:
+      - 35730:35730
+    environment:
+      SOME_URL: whatever
 
   db:
     image: "postgres:9.6"
