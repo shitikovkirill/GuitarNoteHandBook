@@ -6,7 +6,8 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./nginx/config:/etc/nginx/conf.d
+      - "./ember/dist:/var/www/html"
+      - "./nginx/config:/etc/nginx/conf.d"
     depends_on:
       - "web"
       - "ember"
@@ -25,6 +26,8 @@ services:
       DATABASE_URL: "postgres://postgres@db/postgres"
     expose:
       - "8000"
+    ports:
+      - "8888:8000"
 
   ember:
     container_name: handbook_ember
