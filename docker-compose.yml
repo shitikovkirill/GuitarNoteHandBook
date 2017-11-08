@@ -17,6 +17,7 @@ services:
     build:
       context: .
       dockerfile: django/Dockerfile
+    #command: "python ./manage.py runserver 0.0.0.0:8000"
     command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn handbook.wsgi -b 0.0.0.0:8000"
     depends_on:
       - "db"
