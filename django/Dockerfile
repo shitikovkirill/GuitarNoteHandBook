@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:latest
 RUN mkdir /data
 WORKDIR /data
 ADD django/requirements.txt /data

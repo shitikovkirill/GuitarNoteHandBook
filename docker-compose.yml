@@ -1,20 +1,33 @@
 --- 
-services: 
+services:
+  nginx:
+    image: nginx:latest
+    container_name: handbook_nginx
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./nginx/config:/etc/nginx/conf.d
+    depends_on:
+      - "web"
+      - "ember"
+
   web:
+    container_name: handbook_web
     build:
       context: .
       dockerfile: django/Dockerfile
-    command: "python ./manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn handbook.wsgi -b 0.0.0.0:8000"
     depends_on:
       - "db"
-    ports: 
-      - "8000:8000"
     volumes: 
       - "./django:/data"
     environment:
       DATABASE_URL: "postgres://postgres@db/postgres"
+    expose:
+      - "8000"
 
   ember:
+    container_name: handbook_ember
     build:
       context: .
       dockerfile: ember/Dockerfile
@@ -33,6 +46,7 @@ services:
       SOME_URL: whatever
 
   db:
+    container_name: handbook_db
     image: "postgres:9.6"
 version: "2"
 
