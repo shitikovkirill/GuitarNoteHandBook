@@ -28,8 +28,6 @@ RUN set -ex \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/*
 
-WORKDIR /usr/src/app/ember
-
 # 6: Expose the app and live-reload ports:
 EXPOSE 4200 35730
 
