@@ -35,7 +35,7 @@ services:
     build:
       context: .
       dockerfile: ember/Dockerfile
-    #command: ember server --live-reload-port 35730
+    command: "ember server --live-reload-port 35730"
     entrypoint: /usr/src/app/development-entrypoint
 
     volumes:
