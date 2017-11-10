@@ -47,8 +47,6 @@ $startDocker = <<-SHELL
 
 		sudo service docker restart
 
-		cd /vagrant
-
 		docker-compose build
 
 		docker-compose up
