@@ -27,13 +27,13 @@ $prepare = <<-SHELL
 
 		echo -e "\e[34mUser name $USER"
 
-		sudo groupadd docker
-
 		sudo usermod -aG docker $USER
 
 		#sudo systemctl enable docker
 
 		echo manual | sudo tee /etc/init/docker.override
+
+		ln -s /vagrant /home/vagrant/project
 
 	SHELL
 
@@ -47,6 +47,8 @@ $startDocker = <<-SHELL
 
 		sudo service docker restart
 
+		cd /vagrant
+
 		docker-compose build
 
 		docker-compose up
@@ -56,7 +58,12 @@ $startDocker = <<-SHELL
 Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/trusty64"
 
-    config.vm.synced_folder ".", "/home/vagrant"
+    config.vm.provider "virtualbox" do |vb|
+        vb.memory = 1024
+        vb.cpus = 2
+    end
+
+    config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
     config.vm.network :forwarded_port, guest: 8000, host: 8000
     config.vm.network :forwarded_port, guest: 8888, host: 8888
