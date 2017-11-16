@@ -1,4 +1,5 @@
 django
+djangorestframework
 dj-database-url
 gunicorn
 psycopg2
