@@ -17,8 +17,9 @@ services:
     build:
       context: .
       dockerfile: django/Dockerfile
-    #command: "python ./manage.py runserver 0.0.0.0:8000"
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn handbook.wsgi -b 0.0.0.0:8000"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python ./manage.py runserver 0.0.0.0:8000"
+    # For prod
+    #command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn handbook.wsgi -b 0.0.0.0:8000"
     depends_on:
       - "db"
     volumes: 
@@ -43,6 +44,8 @@ services:
     stdin_open: true
     tty: true
 
+    expose:
+      - "4200"
     ports:
       - 4200:4200
       - 35730:35730
