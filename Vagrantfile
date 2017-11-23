@@ -40,6 +40,8 @@ $prepare = <<-SHELL
 $startDocker = <<-SHELL
 
 		echo -e "\e[34mUser name $USER"
+
+		exec bash -l
 		
 		docker --version
 
