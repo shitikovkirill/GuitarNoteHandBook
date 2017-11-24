@@ -1,6 +1,10 @@
 dj-database-url==0.4.2
 Django==1.11.7
 djangorestframework==3.7.3
+djangorestframework-jsonapi
 gunicorn==19.7.1
 psycopg2==2.7.3.2
 pytz==2017.3
+django-import-export
+django-suit
+django-wysiwyg-redactor

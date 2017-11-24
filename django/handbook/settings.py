@@ -28,9 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 APPEND_SLASH = False
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+FILE_UPLOAD_MAX_MEMORY_SIZE = 35000000
 # Application definition
 
 INSTALLED_APPS = [
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,8 +43,13 @@ INSTALLED_APPS = [
     # Django Rest Framework
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_json_api',
 
-    'autorisation'
+    'redactor',
+    'import_export',
+
+    'autorisation',
+    'composition'
 ]
 
 MIDDLEWARE = [
@@ -125,10 +133,35 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-    )
+    ),
+    'EXCEPTION_HANDLER': 'rest_framework_json_api.exceptions.exception_handler',
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework_json_api.pagination.PageNumberPagination',
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework_json_api.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework_json_api.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',
+}
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Note handbook',
+    'MENU': (
+        {'app': 'composition', 'label': 'Composition', 'models': ('composition',),
+            'icon': 'icon-align-left'},
+        '-',
+        {'app': 'auth', 'label': 'Authentication',
+            'icon': 'icon-lock', 'models': ('user', 'group')},
+    ),
+    'LIST_PER_PAGE': 15
 }
