@@ -28,9 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 APPEND_SLASH = False
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+FILE_UPLOAD_MAX_MEMORY_SIZE = 35000000
 # Application definition
 
 INSTALLED_APPS = [
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +44,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
-    'autorisation'
+    'redactor',
+    'import_export',
+
+    'autorisation',
+    'composition'
 ]
 
 MIDDLEWARE = [
@@ -131,4 +138,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     )
+}
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Note handbook',
+    'MENU': (
+        {'app': 'composition', 'label': 'Composition', 'models': ('composition',),
+            'icon': 'icon-align-left'},
+        '-',
+        {'app': 'auth', 'label': 'Authentication',
+            'icon': 'icon-lock', 'models': ('user', 'group')},
+    ),
+    'LIST_PER_PAGE': 15
 }
