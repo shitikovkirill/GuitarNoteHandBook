@@ -3,9 +3,9 @@
     {{#link-to 'application' class="navbar navbar-brand"}}Home{{/link-to}}
     <div class="pull-sm-right">
       {{#if session.isAuthenticated}}
-        <button {{action 'logout'}} class="btn btn-success my-2 my-sm-0">Logout</button>
+        <button {{action 'logout'}} class="btn btn-secondary-outline">Logout</button>
       {{else}}
-        {{#link-to 'login' class="btn btn-success my-2 my-sm-0"}}
+        {{#link-to 'login' class="btn btn-secondary-outline"}}
           Login
         {{/link-to}}
       {{/if}}
