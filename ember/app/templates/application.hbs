@@ -1,11 +1,40 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{#if session.isAuthenticated}}
-<button {{action 'logout'}}>Logout</button>
-{{else}}
-  {{#link-to 'login'}}
-     Login
-  {{/link-to}}
-{{/if}}
-{{!-- Feel free to remove this! --}}
+<nav class="navbar navbar-full navbar-dark bg-primary">
+  <div class="container">
+    {{#link-to 'application' class="navbar navbar-brand"}}Home{{/link-to}}
+    <div class="pull-sm-right">
+      {{#if session.isAuthenticated}}
+        <button {{action 'logout'}} class="btn btn-success my-2 my-sm-0">Logout</button>
+      {{else}}
+        {{#link-to 'login' class="btn btn-success my-2 my-sm-0"}}
+          Login
+        {{/link-to}}
+      {{/if}}
+    </div>
+  </div>
+</nav>
 
-{{outlet}}
+<div class="container main-container">
+  <div class="row">
+    <nav class="col-sm-2">
+      <ul class="nav nav-stacked nav-pills">
+        <li class="nav-item">
+          {{#link-to 'application' class="nav-link"}}Home{{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to 'application' class="nav-link"}}Home{{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to 'application' class="nav-link"}}Home{{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to 'application' class="nav-link"}}Home{{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to 'application' class="nav-link"}}Home{{/link-to}}
+        </li>
+      </ul>
+    </nav>
+  </div>
+  {{outlet}}
+</div>
+

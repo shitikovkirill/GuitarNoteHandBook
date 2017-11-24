@@ -17,9 +17,9 @@ services:
     build:
       context: .
       dockerfile: django/Dockerfile
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python ./manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python ./manage.py runserver 0.0.0.0:8888"
     # For prod
-    #command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn handbook.wsgi -b 0.0.0.0:8000"
+    #command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn handbook.wsgi -b 0.0.0.0:8888"
     depends_on:
       - "db"
     volumes: 
@@ -27,9 +27,9 @@ services:
     environment:
       DATABASE_URL: "postgres://postgres@db/postgres"
     expose:
-      - "8000"
+      - "8888"
     ports:
-      - "8888:8000"
+      - "8888:8888"
 
   ember:
     container_name: handbook_ember
