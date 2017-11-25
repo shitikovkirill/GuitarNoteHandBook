@@ -29,6 +29,8 @@ $prepare = <<-SHELL
 
 		sudo usermod -aG docker $USER
 
+		su - $USER
+
 		#sudo systemctl enable docker
 
 		echo manual | sudo tee /etc/init/docker.override
@@ -41,13 +43,11 @@ $startDocker = <<-SHELL
 
 		echo -e "\e[34mUser name $USER"
 
-		exec bash -l
+		sudo service docker restart
 		
 		docker --version
 
 		docker-compose --version
-
-		sudo service docker restart
 
 		cd /vagrant
 
