@@ -80,6 +80,41 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'PAGE_SIZE': 10,
+    'EXCEPTION_HANDLER': 'rest_framework_json_api.exceptions.exception_handler',
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework_json_api.pagination.PageNumberPagination',
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework_json_api.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework_json_api.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',
+}
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Note handbook',
+    'MENU': (
+        {'app': 'composition', 'label': 'Composition', 'models': ('composition',),
+            'icon': 'icon-align-left'},
+        '-',
+        {'app': 'auth', 'label': 'Authentication',
+            'icon': 'icon-lock', 'models': ('user', 'group')},
+    ),
+    'LIST_PER_PAGE': 15
+}
+
 WSGI_APPLICATION = 'handbook.wsgi.application'
 
 
@@ -131,37 +166,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
-REST_FRAMEWORK = {
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-    'EXCEPTION_HANDLER': 'rest_framework_json_api.exceptions.exception_handler',
-    'DEFAULT_PAGINATION_CLASS':
-        'rest_framework_json_api.pagination.PageNumberPagination',
-    'DEFAULT_PARSER_CLASSES': (
-        'rest_framework_json_api.parsers.JSONParser',
-        'rest_framework.parsers.FormParser',
-        'rest_framework.parsers.MultiPartParser'
-    ),
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework_json_api.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ),
-    'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',
-}
-
-SUIT_CONFIG = {
-    'ADMIN_NAME': 'Note handbook',
-    'MENU': (
-        {'app': 'composition', 'label': 'Composition', 'models': ('composition',),
-            'icon': 'icon-align-left'},
-        '-',
-        {'app': 'auth', 'label': 'Authentication',
-            'icon': 'icon-lock', 'models': ('user', 'group')},
-    ),
-    'LIST_PER_PAGE': 15
-}
+# Editor Redactor
+import time
+REDACTOR_OPTIONS = {'lang': 'en'}
+REDACTOR_UPLOAD = 'uploads/' + time.strftime("%Y/%m/%d/")
+REDACTOR_AUTH_DECORATOR = 'django.contrib.auth.decorators.login_required'

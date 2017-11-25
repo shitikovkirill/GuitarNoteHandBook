@@ -1,5 +1,5 @@
 from django.db import models
-
+from redactor.fields import RedactorField
 
 class Composition(models.Model):
     """
@@ -7,4 +7,4 @@ class Composition(models.Model):
     """
 
     title = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
+    description = RedactorField()
