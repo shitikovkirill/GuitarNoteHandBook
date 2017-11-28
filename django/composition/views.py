@@ -1,7 +1,7 @@
-from .serializers import CompositionSerializer
 from rest_framework.generics import (
     ListCreateAPIView, RetrieveUpdateDestroyAPIView)
 from .models import *
+from .serializers import *
 
 
 class CompositionMixin(object):
@@ -34,7 +34,7 @@ class AuthorMixin(object):
     Here we're setting the query set and the serializer
     """
     queryset = Author.objects.all()
-    serializer_class = CompositionSerializer
+    serializer_class = AuthorSerializer
 
 
 class AuthorList(AuthorMixin, ListCreateAPIView):

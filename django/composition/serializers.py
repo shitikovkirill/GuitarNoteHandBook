@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Composition
+from .models import *
 
 
 class CompositionSerializer(serializers.ModelSerializer):
@@ -10,3 +10,13 @@ class CompositionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Composition
         fields = ('title', 'description', 'id')
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+    """
+    Serializer to parse Author data
+    """
+
+    class Meta:
+        model = Author
+        fields = ('name', 'surname', 'name_en', 'surname_en', 'biography', 'id')
