@@ -8,3 +8,4 @@ pytz==2017.3
 django-import-export
 django-suit
 django-wysiwyg-redactor
+Pillow

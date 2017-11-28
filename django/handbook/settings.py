@@ -34,6 +34,9 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 35000000
 
 INSTALLED_APPS = [
     'suit',
+    'redactor',
+    'import_export',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,9 +47,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_json_api',
-
-    'redactor',
-    'import_export',
 
     'autorisation',
     'composition'
@@ -106,11 +106,11 @@ REST_FRAMEWORK = {
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Note handbook',
     'MENU': (
-        {'app': 'composition', 'label': 'Composition', 'models': ('composition',),
-            'icon': 'icon-align-left'},
+        {'app': 'composition', 'label': 'Composition',
+         'models': ('composition', 'author'), 'icon': 'icon-align-left'},
         '-',
         {'app': 'auth', 'label': 'Authentication',
-            'icon': 'icon-lock', 'models': ('user', 'group')},
+         'models': ('user', 'group'), 'icon': 'icon-lock'},
     ),
     'LIST_PER_PAGE': 15
 }
