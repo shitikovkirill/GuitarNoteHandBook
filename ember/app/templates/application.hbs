@@ -18,23 +18,16 @@
     <nav class="col-sm-2">
       <ul class="nav nav-stacked nav-pills">
         <li class="nav-item">
-          {{#link-to 'application' class="nav-link"}}Home{{/link-to}}
+          {{#link-to 'author' class="nav-link"}}Авторы{{/link-to}}
         </li>
         <li class="nav-item">
-          {{#link-to 'application' class="nav-link"}}Home{{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to 'application' class="nav-link"}}Home{{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to 'application' class="nav-link"}}Home{{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to 'application' class="nav-link"}}Home{{/link-to}}
+          {{#link-to 'composition' class="nav-link"}}Произведения{{/link-to}}
         </li>
       </ul>
     </nav>
+    <div class="col-sm-10">
+      {{outlet}}
+    </div>
   </div>
-  {{outlet}}
 </div>
 
