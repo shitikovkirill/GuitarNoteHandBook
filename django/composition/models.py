@@ -28,7 +28,7 @@ class Author(models.Model):
     biography = RedactorField(null=True)
 
     def save(self, *args, **kwargs):
-        self.char = self.surname.strip()
-        self.char_en = self.surname_en.strip()
+        self.char = self.surname.strip()[0]
+        self.char_en = self.surname_en.strip()[0]
 
         super(Author, self).save(*args, **kwargs)
