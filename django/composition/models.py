@@ -1,21 +1,13 @@
 from django.db import models
 from redactor.fields import RedactorField
-from  django.core.validators import RegexValidator
-
-
-class Composition(models.Model):
-    """
-    Model for storing `composition`
-    """
-
-    title = models.CharField(max_length=100)
-    description = RedactorField()
+from django.core.validators import RegexValidator
 
 
 class Author(models.Model):
     """
     Model for storing `author`
     """
+
     char = models.CharField(max_length=1, editable=False)
     name = models.CharField(max_length=100, null=True)
     surname = models.CharField(max_length=100,
@@ -32,3 +24,13 @@ class Author(models.Model):
         self.char_en = self.surname_en.strip()[0]
 
         super(Author, self).save(*args, **kwargs)
+
+
+class Composition(models.Model):
+    """
+    Model for storing `composition`
+    """
+
+    title = models.CharField(max_length=100)
+    description = RedactorField()
+    author = models.ManyToManyField(Author)
