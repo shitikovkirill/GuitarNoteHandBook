@@ -1,10 +1,4 @@
 Автор
-{{#each model as |author|}}
-  <article class="listing">
-    <h3>{{author.name}}</h3>
-    <p>{{author.surname}}</p>
-    <p>{{author.nameEn}}</p>
-    <p>{{author.surnameEn}}</p>
-    <p>{{author.biography}}</p>
-  </article>
+{{#each model as |authorItem|}}
+  {{author-list author=authorItem}}
 {{/each}}

@@ -1,5 +1,4 @@
 Composition
-{{#each model as |composition|}}
-  <h3>{{composition.title}}</h3>
-  <p>{{composition.description}}</p>
+{{#each model as |compositionItem|}}
+  {{composition-list composition = compositionItem}}
 {{/each}}
