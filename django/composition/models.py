@@ -41,7 +41,7 @@ class Note(models.Model):
         max_length=4,
         choices=FILE_TYPE,
     )
-    file = models.FileField()
+    file = models.FileField(upload_to='note/%Y/%m/%d/')
 
 
 class Audio(models.Model):
@@ -58,7 +58,7 @@ class Audio(models.Model):
         max_length=4,
         choices=FILE_TYPE,
     )
-    file = models.FileField()
+    file = models.FileField(upload_to='audio/%Y/%m/%d/')
 
 
 class Composition(models.Model):
