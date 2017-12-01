@@ -107,7 +107,7 @@ SUIT_CONFIG = {
     'ADMIN_NAME': 'Note handbook',
     'MENU': (
         {'app': 'composition', 'label': 'Composition',
-         'models': ('composition', 'author'), 'icon': 'icon-align-left'},
+         'models': ('composition', 'author', 'note', 'audio'), 'icon': 'icon-align-left'},
         '-',
         {'app': 'auth', 'label': 'Authentication',
          'models': ('user', 'group'), 'icon': 'icon-lock'},
