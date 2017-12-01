@@ -26,6 +26,41 @@ class Author(models.Model):
         super(Author, self).save(*args, **kwargs)
 
 
+class Note(models.Model):
+    """
+    Model for storing `note`
+    """
+
+    FILE_TYPE = (
+        ('pdf', 'PDF'),
+        ('txt', 'TXT'),
+        ('gif', 'GIF')
+    )
+    name = models.CharField(max_length=100, null=True)
+    note_type = models.CharField(
+        max_length=4,
+        choices=FILE_TYPE,
+    )
+    file = models.FileField()
+
+
+class Audio(models.Model):
+    """
+    Model for storing `note`
+    """
+
+    FILE_TYPE = (
+        ('mp3', 'MP3'),
+        ('midi', 'MIDI'),
+    )
+    name = models.CharField(max_length=100, null=True)
+    audio_type = models.CharField(
+        max_length=4,
+        choices=FILE_TYPE,
+    )
+    file = models.FileField()
+
+
 class Composition(models.Model):
     """
     Model for storing `composition`
@@ -34,3 +69,5 @@ class Composition(models.Model):
     title = models.CharField(max_length=100)
     description = RedactorField()
     author = models.ManyToManyField(Author)
+    note = models.ManyToManyField(Note)
+    audio = models.ManyToManyField(Audio)
