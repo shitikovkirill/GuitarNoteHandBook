@@ -1,4 +1,13 @@
-<nav class="navbar navbar-full navbar-dark bg-primary">
+<div class="wrapper">
+  {{main-header}}
+  {{main-sidebar}}
+  {{#content-wrapper}}
+    {{outlet}}
+  {{/content-wrapper}}
+  {{main-footer}}
+  {{control-sidebar}}
+</div>
+<!--<nav class="navbar navbar-full navbar-dark bg-primary">
   <div class="container">
     {{#link-to 'application' class="navbar navbar-brand"}}Home{{/link-to}}
     <div class="pull-sm-right">
@@ -29,5 +38,5 @@
       {{outlet}}
     </div>
   </div>
-</div>
+</div>-->
 

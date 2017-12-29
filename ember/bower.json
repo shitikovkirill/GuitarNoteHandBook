@@ -2,7 +2,5 @@
   "name": "technic-guide",
   "version": "0.0.1",
   "dependencies": {
-    "bootstrap": "4.0.0-alpha.2",
-    "tether": "^1.4.2"
   }
 }
