@@ -2,9 +2,16 @@ Django hand book
 ================
 
 # Start
+
+Install:
 ```bash
 docker-compose build
 docker-compose up
+```
+
+Add user:
+```bash
+docker-compose run --rm web python manage.py createsuperuser
 ```
 
 #### Frontend + API
