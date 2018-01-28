@@ -1,4 +1,4 @@
-$rootScript = <<-SHELL 
+$rootScript = <<-SHELL
 
 		echo -e "\e[34mUser name $USER"
 
@@ -35,7 +35,13 @@ $prepare = <<-SHELL
 
 		echo manual | sudo tee /etc/init/docker.override
 
-		ln -s /vagrant /home/vagrant/project
+		if [ -d "/home/vagrant/project" ]
+    then
+        echo "#### Directory already exist ####"
+    else
+        echo "#### Created link ####"
+        ln -s /vagrant /home/vagrant/project
+    fi
 
 	SHELL
 
@@ -44,7 +50,7 @@ $startDocker = <<-SHELL
 		echo -e "\e[34mUser name $USER"
 
 		sudo service docker restart
-		
+
 		docker --version
 
 		docker-compose --version
@@ -73,7 +79,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision :shell, inline: $rootScript
 
-    config.vm.provision :shell, privileged: false, inline: $prepare 
+    config.vm.provision :shell, privileged: false, inline: $prepare
 
     config.vm.provision :shell, run: 'always', privileged: false, inline: $startDocker
 end
