@@ -8,5 +8,4 @@ router.register(r'groups', GroupViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^$', custom_auth_token),
 ]
