@@ -12,7 +12,9 @@ Router.map(function() {
     // all routes that require the session to be authenticated
   });
   this.route('composition');
+  this.route('single_composition', { path: 'composition/:composition_id' });
   this.route('author');
+  this.route('single_author', { path: 'author/:author_id' });
 });
 
 export default Router;
