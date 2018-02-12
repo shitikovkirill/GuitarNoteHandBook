@@ -27,6 +27,10 @@ class CompositionDetail(CompositionMixin, RetrieveUpdateDestroyAPIView):
     pass
 
 
+class LastAddedComposition(CompositionMixin, ListCreateAPIView):
+    queryset = Composition.objects.order_by('create_date')[0:5]
+
+
 class AuthorMixin(object):
     """
     Mixin to inherit from.

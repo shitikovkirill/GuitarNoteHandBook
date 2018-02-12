@@ -19,6 +19,9 @@ class Author(models.Model):
         validators=[RegexValidator(r'^[\w\d]+', message='This field must contain minimum 1 char')])
     biography = RedactorField(null=True)
 
+    create_date = models.DateTimeField(auto_now=True)
+    update_date = models.DateTimeField(auto_now=True)
+
     def save(self, *args, **kwargs):
         self.char = self.surname.strip()[0]
         self.char_en = self.surname_en.strip()[0]
@@ -70,4 +73,6 @@ class Composition(models.Model):
     description = RedactorField()
     author = models.ManyToManyField(Author)
     note = models.ManyToManyField(Note)
-    audio = models.ManyToManyField(Audio)
+    audio = models.ManyToManyField(Audio, blank=True, null=True)
+    create_date = models.DateTimeField(auto_now=True)
+    update_date = models.DateTimeField(auto_now=True)
