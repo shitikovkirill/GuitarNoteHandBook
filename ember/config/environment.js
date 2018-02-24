@@ -47,5 +47,9 @@ module.exports = function(environment) {
 
   }
 
+  ENV['ember-simple-auth'] = {
+    routeAfterAuthentication: 'start'
+  };
+
   return ENV;
 };
