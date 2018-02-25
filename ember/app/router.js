@@ -9,7 +9,6 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('start', { path: '' });
   this.route('login');
-  this.route('signup');
   this.route('authenticated', { path: 'profile' }, function() {
     // all routes that require the session to be authenticated
   });
